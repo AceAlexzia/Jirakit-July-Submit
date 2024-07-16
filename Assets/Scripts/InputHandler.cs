@@ -8,14 +8,19 @@ public class InputHandler : MonoBehaviour
     #region Variables
 
     private Camera _mainCamera;
+    public static InputHandler instance;
 
     #endregion
+
 
     private void Awake()
     {
         _mainCamera = Camera.main;
     }
-
+    private void Start()
+    {
+        instance = this;
+    }
     public void OnClick(InputAction.CallbackContext context)
     {
         if (!context.started)
@@ -29,6 +34,20 @@ public class InputHandler : MonoBehaviour
             return;
         }
 
-        Debug.Log(rayHit.collider.gameObject.name);
+        GameObject obj = rayHit.collider.gameObject;
+
+        if (rayHit.collider.gameObject != null) 
+        {
+            //Debug.Log("ClickOnCard");
+            if (rayHit.collider.gameObject.GetComponent<Card>() != null)
+            {
+                GameManager.instance.SelectCard(obj);
+            }
+
+        }
+
+
+       
+        //Debug.Log(rayHit.collider.gameObject.name);
     }
 }
