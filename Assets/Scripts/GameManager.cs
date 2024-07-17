@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject cardLayout;
 
+    [SerializeField]
+    private List<Sprite> cards_image = new List<Sprite>();
+
     // Shuffle for list
     void Shuffle<T>(List<T> inputList)
     {
@@ -40,10 +43,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         instance = this;
+        Shuffle(cards_image);
 
         CreateCard();
         RandomCardID();
-
     }
 
     void Update()
@@ -80,6 +83,12 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < cardlist.Count; i++)
         {
             cardlist[i].GetComponent<Card>().ID = randomNumber[i];
+        }
+
+        // Assign Image to cards
+        for (int i = 0; i < cardlist.Count; i++)
+        {
+            cardlist[i].GetComponent<Card>().image.sprite = cards_image[cardlist[i].GetComponent<Card>().ID];
         }
 
     }

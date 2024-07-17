@@ -6,10 +6,8 @@ using UnityEngine.UI;
 
 public class CardLayout : LayoutGroup
 {
-    [SerializeField]
-    private int row;
-    [SerializeField]
-    private int col;
+    public int row;
+    public int col;
     [SerializeField]
     private Vector2 cardSize;
     [SerializeField]
