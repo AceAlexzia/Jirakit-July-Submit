@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private List<Sprite> cards_image = new List<Sprite>();
 
-    private bool gameStart = false;
+    public bool gameStart = false;
 
     // Shuffle for list
     void Shuffle<T>(List<T> inputList)

@@ -227,3 +227,6 @@ MonoBehaviour:
   image: {fileID: 5357382645378458519}
   faceSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   backSprite: {fileID: 6264487, guid: 360f90da544071144904e651c028e873, type: 3}
+  x: 0
+  y: 1
+  z: 0
