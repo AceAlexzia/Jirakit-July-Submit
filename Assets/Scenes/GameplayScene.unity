@@ -129,6 +129,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1618590611}
     m_Modifications:
+    - target: {fileID: 5357382645378458518, guid: a51caac4c2539324b82b81ad6cb04524, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 465
+      objectReference: {fileID: 0}
+    - target: {fileID: 5357382645378458518, guid: a51caac4c2539324b82b81ad6cb04524, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 465
+      objectReference: {fileID: 0}
     - target: {fileID: 5357382645578973836, guid: a51caac4c2539324b82b81ad6cb04524, type: 3}
       propertyPath: m_Name
       value: Card UI (1)
@@ -388,6 +396,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1618590611}
     m_Modifications:
+    - target: {fileID: 5357382645378458518, guid: a51caac4c2539324b82b81ad6cb04524, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 465
+      objectReference: {fileID: 0}
+    - target: {fileID: 5357382645378458518, guid: a51caac4c2539324b82b81ad6cb04524, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 465
+      objectReference: {fileID: 0}
     - target: {fileID: 5357382645578973836, guid: a51caac4c2539324b82b81ad6cb04524, type: 3}
       propertyPath: m_Name
       value: Card UI
@@ -907,6 +923,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1618590611}
     m_Modifications:
+    - target: {fileID: 5357382645378458518, guid: a51caac4c2539324b82b81ad6cb04524, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 465
+      objectReference: {fileID: 0}
+    - target: {fileID: 5357382645378458518, guid: a51caac4c2539324b82b81ad6cb04524, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 465
+      objectReference: {fileID: 0}
     - target: {fileID: 5357382645578973836, guid: a51caac4c2539324b82b81ad6cb04524, type: 3}
       propertyPath: m_Name
       value: Card UI (2)
@@ -1338,6 +1362,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1618590611}
     m_Modifications:
+    - target: {fileID: 5357382645378458518, guid: a51caac4c2539324b82b81ad6cb04524, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 465
+      objectReference: {fileID: 0}
+    - target: {fileID: 5357382645378458518, guid: a51caac4c2539324b82b81ad6cb04524, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 465
+      objectReference: {fileID: 0}
     - target: {fileID: 5357382645578973836, guid: a51caac4c2539324b82b81ad6cb04524, type: 3}
       propertyPath: m_Name
       value: Card UI (3)

@@ -56,6 +56,9 @@ public class CardLayout : LayoutGroup
             SetChildAlongAxis(item, 0, xPos, cardSize.x);
             SetChildAlongAxis(item, 1, yPos, cardSize.y);
 
+            item.GetComponent<Card>().image.rectTransform.sizeDelta = new Vector2(cardSize.x, cardSize.y);
+
+
 
         }
     }

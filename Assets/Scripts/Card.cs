@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +8,7 @@ public class Card : MonoBehaviour
 {
     public int ID;
     public Image image;
-
+    
 
 
     public void SelectCard()
@@ -21,6 +22,8 @@ public class Card : MonoBehaviour
     void Start()
     {
         //image = GetComponentInChildren<Image>();
+        
+
     }
 
     // Update is called once per frame
