@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class InputHandler : MonoBehaviour
@@ -48,6 +49,6 @@ public class InputHandler : MonoBehaviour
 
 
        
-        //Debug.Log(rayHit.collider.gameObject.name);
+        Debug.Log(rayHit.collider.gameObject.name);
     }
 }

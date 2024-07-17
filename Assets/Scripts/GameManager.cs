@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         instance = this;
+        
+
     }
 
     void Update()
@@ -36,6 +38,10 @@ public class GameManager : MonoBehaviour
         if (!selectCard.Contains(gameObject))
         {
             selectCard.Add(gameObject);
+        }
+        else
+        {
+            selectCard.Remove(gameObject);
         }
         if (selectCard.Count == 2)
         {
