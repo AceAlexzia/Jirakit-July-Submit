@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
             {
                 cardlist.Remove(card);
             }
-            
+
 
             foreach (GameObject obj in selectCard)
             {
@@ -68,8 +68,8 @@ public class GameManager : MonoBehaviour
 
                 //Destroy(obj);
                 obj.GetComponent<Image>().enabled = false;
-                obj.GetComponentInChildren<Image>().enabled = false;
-
+                obj.GetComponent<Card>().image.enabled = false;
+            
             }
         }
         else
