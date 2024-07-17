@@ -43,7 +43,14 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         instance = this;
+
+        CardLayout card_layout = cardLayout.GetComponent<CardLayout>();
+        card_layout.row = LevelSelector_Singleton.instance.rowNumber;
+        card_layout.col = LevelSelector_Singleton.instance.colNumber;
+        cardNumber = card_layout.row * card_layout.col;
+
         Shuffle(cards_image);
+        
 
         CreateCard();
         RandomCardID();
