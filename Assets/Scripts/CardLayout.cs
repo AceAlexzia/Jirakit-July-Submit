@@ -65,6 +65,6 @@ public class CardLayout : LayoutGroup
     }
     public override void SetLayoutVertical()
     {
-        return;
+        CalculateLayoutInputVertical();
     }
 }

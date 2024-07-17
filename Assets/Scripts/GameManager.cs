@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -63,7 +64,12 @@ public class GameManager : MonoBehaviour
 
             foreach (GameObject obj in selectCard)
             {
-                Destroy(obj);
+                //obj.SetActive(false);
+
+                //Destroy(obj);
+                obj.GetComponent<Image>().enabled = false;
+                obj.GetComponentInChildren<Image>().enabled = false;
+
             }
         }
         else
