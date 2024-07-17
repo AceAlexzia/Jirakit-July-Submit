@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public string mode;
+    public bool isDevMode = false;
     private InputHandler inputHandler;
     [SerializeField]
     private List<GameObject> cardlist = new List<GameObject>();
@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private List<Sprite> cards_image = new List<Sprite>();
+
+    private bool gameStart = false;
 
     // Shuffle for list
     void Shuffle<T>(List<T> inputList)
@@ -45,15 +47,31 @@ public class GameManager : MonoBehaviour
         instance = this;
 
         CardLayout card_layout = cardLayout.GetComponent<CardLayout>();
-        card_layout.row = LevelSelector_Singleton.instance.rowNumber;
-        card_layout.col = LevelSelector_Singleton.instance.colNumber;
-        cardNumber = card_layout.row * card_layout.col;
+        if (LevelSelector_Singleton.instance != null)
+        {
+            card_layout.row = LevelSelector_Singleton.instance.rowNumber;
+            card_layout.col = LevelSelector_Singleton.instance.colNumber;
+            cardNumber = card_layout.row * card_layout.col;
+        }
+        else
+        {
+            card_layout.row = 3;
+            card_layout.col = 2;
+        }
+        
 
         Shuffle(cards_image);
         
 
         CreateCard();
         RandomCardID();
+
+        if(isDevMode)
+        {
+
+        }
+        StartCoroutine(GameStart());
+
     }
 
     void Update()
@@ -102,19 +120,23 @@ public class GameManager : MonoBehaviour
 
     public void SelectCard(GameObject gameObject)
     {
-        Debug.Log("InSelectCard");
-        if (!selectCard.Contains(gameObject))
+        if (gameStart)
         {
-            selectCard.Add(gameObject);
+            Debug.Log("InSelectCard");
+            if (!selectCard.Contains(gameObject))
+            {
+                selectCard.Add(gameObject);
+            }
+            else
+            {
+                selectCard.Remove(gameObject);
+            }
+            if (selectCard.Count == 2)
+            {
+                CheckCorrection();
+            }
         }
-        else
-        {
-            selectCard.Remove(gameObject);
-        }
-        if (selectCard.Count == 2)
-        {
-            CheckCorrection();
-        }
+        
     }
 
     private void CheckCorrection()
@@ -151,6 +173,22 @@ public class GameManager : MonoBehaviour
 
 
         selectCard.Clear();
+    }
+
+    IEnumerator GameStart()
+    {
+
+
+        yield return new WaitForSeconds(6.5f);
+
+        foreach (var card in cardlist)
+        {
+            card.GetComponent<Card>().SetupCard(); 
+        }
+        gameStart = true;
+
+
+
     }
 
 }

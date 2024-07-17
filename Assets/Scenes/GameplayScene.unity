@@ -438,7 +438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc185f037a203444fbf616ef96ec44c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: 
+  isDevMode: 0
   cardlist: []
   selectCard: []
   cardNumber: 6
@@ -1475,7 +1475,7 @@ SpriteRenderer:
   m_Size: {x: 25.589998, y: 14.394375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1990710977
