@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    #region Variables
     public static GameManager instance;
     public string mode;
     private InputHandler inputHandler;
@@ -13,16 +12,37 @@ public class GameManager : MonoBehaviour
     private List<GameObject> cardlist = new List<GameObject>();
     [SerializeField]
     private List<GameObject> selectCard = new List<GameObject>();
-    
 
+    [SerializeField]
+    private int cardNumber = 0;
+    [SerializeField]
+    private List<int> randomNumber = new List<int>();
+    [SerializeField]
+    private GameObject Card;
 
-    #endregion
+    [SerializeField]
+    private GameObject cardLayout;
+
+    // Shuffle for list
+    void Shuffle<T>(List<T> inputList)
+    {
+        for (int i = 0; i < inputList.Count - 1; i++)
+        {
+            T temp = inputList[i];
+            int rand = Random.Range(i, inputList.Count);
+            inputList[i] = inputList[rand];
+            inputList[rand] = temp;
+        }
+    }
+
 
     // Start is called before the first frame update
     void Start()
     {
         instance = this;
-        
+
+        CreateCard();
+        RandomCardID();
 
     }
 
@@ -31,7 +51,38 @@ public class GameManager : MonoBehaviour
         
     }
 
+    private void CreateCard()
+    {
+        for (int i = 0; i < cardNumber; i++)
+        {
 
+            GameObject card = Instantiate(Card);
+            card.transform.SetParent(cardLayout.transform);
+            cardlist.Add(card);
+            
+        }
+
+    }
+
+    private void RandomCardID()
+    {
+        // Put number into the list
+        for (int i = 0; i < cardNumber / 2; i++)
+        {
+            randomNumber.Add(i);
+            randomNumber.Add(i);
+        }
+
+        // Random Number to the card
+        Shuffle(randomNumber);
+
+        // Assign Card id
+        for (int i = 0; i < cardlist.Count; i++)
+        {
+            cardlist[i].GetComponent<Card>().ID = randomNumber[i];
+        }
+
+    }
 
     public void SelectCard(GameObject gameObject)
     {
@@ -85,7 +136,5 @@ public class GameManager : MonoBehaviour
 
         selectCard.Clear();
     }
-
-
 
 }

@@ -16,7 +16,6 @@ public class CardLayout : LayoutGroup
     private Vector2 spacing;
     [SerializeField]
     private int topPaddingOffset;
-
     public override void CalculateLayoutInputVertical() 
     {
         if (row == 0 || col == 0)
