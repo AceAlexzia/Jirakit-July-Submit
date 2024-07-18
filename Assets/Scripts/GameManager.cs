@@ -154,27 +154,11 @@ public class GameManager : MonoBehaviour
         {
 
             Debug.Log("Matching");
-
-            foreach (var card in selectCard)
-            {
-                cardlist.Remove(card);
-            }
+            StartCoroutine(CardMatch());
+            
 
 
-            foreach (GameObject obj in selectCard)
-            {
-                //obj.SetActive(false);
-
-                //Destroy(obj);
-                obj.GetComponent<Image>().enabled = false;
-                obj.GetComponent<Card>().image.enabled = false;
-
-
-
-
-            }
-            selectCard.RemoveAt(0);
-            selectCard.RemoveAt(0);
+            
 
         }
         else
@@ -218,7 +202,6 @@ public class GameManager : MonoBehaviour
         
         // wait for flip
         yield return new WaitForSeconds(0.4f);
-        Debug.Log("i = " + i);
 
         selectCard[i].GetComponent<Card>().StartFlip();
         selectCard[i+1].GetComponent<Card>().StartFlip();
@@ -236,7 +219,22 @@ public class GameManager : MonoBehaviour
     {
 
         yield return new WaitForSeconds(0.4f);
+        foreach (GameObject obj in selectCard)
+        {
+            //obj.SetActive(false);
 
+            //Destroy(obj);
+            obj.GetComponent<Image>().enabled = false;
+            obj.GetComponent<Card>().image.enabled = false;
+
+        }
+        yield return new WaitForSeconds(0.05f);
+        selectCard.RemoveAt(0);
+        selectCard.RemoveAt(0);
+        foreach (var card in selectCard)
+        {
+            cardlist.Remove(card);
+        }
     }
 
 
