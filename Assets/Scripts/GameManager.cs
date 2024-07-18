@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private SoundEffect soundEffect;
 
+    private ScoreCalculation scoreCalculation;
+
     // Shuffle for list
     void Shuffle<T>(List<T> inputList)
     {
@@ -48,7 +50,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         instance = this;
-
+        scoreCalculation = GetComponent<ScoreCalculation>();
         CardLayout card_layout = cardLayout.GetComponent<CardLayout>();
         if (LevelSelector_Singleton.instance != null)
         {
@@ -186,6 +188,7 @@ public class GameManager : MonoBehaviour
         // wait for flip
         yield return new WaitForSeconds(0.4f);
         soundEffect.PlayWrongSound();
+        scoreCalculation.UnMatchCalculation();
         selectCard[i].GetComponent<Card>().StartFlip();
         soundEffect.PlayFlipSound();
         selectCard[i+1].GetComponent<Card>().StartFlip();
@@ -205,6 +208,7 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(0.4f);
         soundEffect.PlayCorrectSound();
+        scoreCalculation.MatchCalculation();
         foreach (GameObject obj in selectCard)
         {
             //obj.SetActive(false);
