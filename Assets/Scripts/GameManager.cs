@@ -1,17 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public bool isDevMode = false;
-    private InputHandler inputHandler;
     [SerializeField]
     private List<GameObject> cardlist = new List<GameObject>();
     [SerializeField]
     private List<GameObject> selectCard = new List<GameObject>();
+
 
     [SerializeField]
     private int cardNumber = 0;
@@ -27,6 +28,8 @@ public class GameManager : MonoBehaviour
     private List<Sprite> cards_image = new List<Sprite>();
 
     public bool gameStart = false;
+
+
 
     // Shuffle for list
     void Shuffle<T>(List<T> inputList)
@@ -76,7 +79,9 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        
+        if(gameStart)
+        {
+        }
     }
 
     private void CreateCard()
@@ -125,10 +130,12 @@ public class GameManager : MonoBehaviour
             if (!selectCard.Contains(gameObject))
             {
                 selectCard.Add(gameObject);
+
             }
-            if (selectCard.Count == 2)
+            if (selectCard.Count % 2 == 0 && selectCard.Count > 1)
             {
                 CheckCorrection();
+
             }
         }
         
@@ -136,9 +143,16 @@ public class GameManager : MonoBehaviour
 
     private void CheckCorrection()
     {
-        
+
+        Debug.Log("selectCard.Count = " + selectCard.Count);
+        //for (int i = 0; i < selectCard.Count - 1; i+=2)
+        //{
+
+        //}
+
         if (selectCard[0].GetComponent<Card>().ID == selectCard[1].GetComponent<Card>().ID)
         {
+
             Debug.Log("Matching");
 
             foreach (var card in selectCard)
@@ -154,9 +168,14 @@ public class GameManager : MonoBehaviour
                 //Destroy(obj);
                 obj.GetComponent<Image>().enabled = false;
                 obj.GetComponent<Card>().image.enabled = false;
-            
+
+
+
+
             }
-            selectCard.Clear();
+            selectCard.RemoveAt(0);
+            selectCard.RemoveAt(0);
+
         }
         else
         {
@@ -166,14 +185,16 @@ public class GameManager : MonoBehaviour
             //Flip 2 cards
 
             //UnAssigned SelectCard
-            StartCoroutine(CardUnMatch());
+            StartCoroutine(CardUnMatch(0));
 
         }
+
 
         if (cardlist.Count == 0)
         {
             Debug.Log("Game End");
         }
+
 
     }
 
@@ -192,18 +213,29 @@ public class GameManager : MonoBehaviour
 
 
     }
-    IEnumerator CardUnMatch()
+    IEnumerator CardUnMatch(int i)
     {
         
-        
+        // wait for flip
         yield return new WaitForSeconds(0.4f);
-        foreach (GameObject obj in selectCard)
-        {
+        Debug.Log("i = " + i);
 
-            obj.GetComponent<Card>().StartFlip();
-        }
+        selectCard[i].GetComponent<Card>().StartFlip();
+        selectCard[i+1].GetComponent<Card>().StartFlip();
+
+        selectCard[i].GetComponent<Card>().button.enabled = true;
+        selectCard[i + 1].GetComponent<Card>().button.enabled = true;
+
         yield return new WaitForSeconds(0.05f);
-        selectCard.Clear();
+        selectCard.RemoveAt(i);
+        selectCard.RemoveAt(i);
+
+    }
+
+    IEnumerator CardMatch()
+    {
+
+        yield return new WaitForSeconds(0.4f);
 
     }
 

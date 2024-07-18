@@ -446,17 +446,30 @@ MonoBehaviour:
   Card: {fileID: 5357382645578973836, guid: a51caac4c2539324b82b81ad6cb04524, type: 3}
   cardLayout: {fileID: 1618590610}
   cards_image:
+  - {fileID: 21300000, guid: 6f7a7ac673c797a4ea64483ffed8a9dd, type: 3}
+  - {fileID: 21300000, guid: 8cca2139d4768fb41819a90887630501, type: 3}
+  - {fileID: 21300000, guid: c73fd20bea00a2e40b769a0e4e7030f2, type: 3}
   - {fileID: 21300000, guid: 37d4706eaf316a34a953ad10dc3616ec, type: 3}
   - {fileID: 21300000, guid: 45dba5b196ff65e46ac7b47a9b9d4b3d, type: 3}
   - {fileID: 21300000, guid: 88d0df89423971848aa7e2c72d686a1b, type: 3}
   - {fileID: 21300000, guid: 05255bf00b06dd24cb28d4d77544d145, type: 3}
   - {fileID: 21300000, guid: 5c662afd05363334688be23ac5f0bcec, type: 3}
+  - {fileID: 21300000, guid: b4caa76f8fabba84292fdeabe850aa55, type: 3}
+  - {fileID: 21300000, guid: beb019185aa84c64f8a2b0aaf9ac69cb, type: 3}
   - {fileID: 21300000, guid: fd8a2a8a88fbd1a478cc7a546b7a4255, type: 3}
   - {fileID: 21300000, guid: ee2e2400cddf0f8469fc7edea510bc9f, type: 3}
   - {fileID: 21300000, guid: 2e8b3ec3198cee34eb5f8d0a9cd74331, type: 3}
+  - {fileID: 21300000, guid: 2f000694c59d03d408c6870f7e0306aa, type: 3}
   - {fileID: 21300000, guid: 040658ca7c578c54a872ef00a9c2f399, type: 3}
   - {fileID: 21300000, guid: 27e1424d5c40ecb4fb0cfdb31180e81e, type: 3}
+  - {fileID: 21300000, guid: 17f2a054eaada8d49b036fa49b5e6968, type: 3}
+  - {fileID: 21300000, guid: 2d1089c032dab844291dd06dee6df651, type: 3}
+  - {fileID: 21300000, guid: 350bc9ebc165f2947a6489af3b5ee3cf, type: 3}
+  - {fileID: 21300000, guid: ec9da6aff0ec8894bb07ea9b49ecb1a3, type: 3}
   - {fileID: 21300000, guid: d6923919d8e78b5468cc0c6140592b86, type: 3}
+  - {fileID: 21300000, guid: 47361141312566b4092de9a61ba43220, type: 3}
+  gameStart: 0
+  checking: 0
 --- !u!4 &589769198
 Transform:
   m_ObjectHideFlags: 0

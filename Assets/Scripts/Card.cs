@@ -17,10 +17,11 @@ public class Card : MonoBehaviour
     private bool isFaceUp = false;
     [SerializeField]
     private float x, y, z;
-    float timer = 0.0f;
     [HideInInspector]
     public bool isFinishFlip = true;
-
+    [HideInInspector]
+    public bool isSelect = false;
+    public Button button;
 
     // Start is called before the first frame update
     void Start()
@@ -28,16 +29,23 @@ public class Card : MonoBehaviour
         card_image = GetComponent<Image>();
         //card_image.sprite = backSprite;
         isFaceUp = true;
-
+        button = GetComponent<Button>();
     }
     public void SelectCard()
     {
-        GameManager.instance.SelectCard(this.gameObject);
-        // Flip
-        if (GameManager.instance.gameStart)
+        if (isFinishFlip)
         {
-            StartFlip();
+            GameManager.instance.SelectCard(this.gameObject);
+
+            // Flip
+            if (GameManager.instance.gameStart)
+            {
+                StartFlip();
+                button.enabled = false;
+                isFinishFlip = false;
+            }
         }
+       
 
     }
 
@@ -72,38 +80,30 @@ public class Card : MonoBehaviour
     public IEnumerator CalculateFlip()
     {
 
-        if (isFaceUp)
+        for (int i = 0; i <= 90; i++)
         {
-            for (int i = 180; i >= 0; i--)
-            {
-                yield return new WaitForSeconds(0.0001f);
-                //transform.Rotate(new Vector3(x, y, z));
+            yield return new WaitForSeconds(0.0001f);
+            //transform.Rotate(new Vector3(x, i, z));
 
-                gameObject.GetComponent<RectTransform>().eulerAngles = new Vector3(x, i, z);
-                timer++;
-                if (timer == 90 || timer == -90)
-                {
-                    Flip();
-                }
+            gameObject.GetComponent<RectTransform>().eulerAngles = new Vector3(x, i, z);
+            if (i == 90)
+            {
+                Flip();
             }
         }
-        else
+        for (int i = 90; i >= 0; i--)
         {
-            for (int i = 0; i <= 180; i++)
+            yield return new WaitForSeconds(0.0001f);
+            gameObject.GetComponent<RectTransform>().eulerAngles = new Vector3(x, i, z);
+            if (i == 90)
             {
-                yield return new WaitForSeconds(0.0001f);
-                //transform.Rotate(new Vector3(x, y, z));
-
-                gameObject.GetComponent<RectTransform>().eulerAngles = new Vector3(x, i, z);
-                timer++;
-                if (timer == 90 || timer == -90)
-                {
-                    Flip();
-                }
+                Flip();
             }
+
         }
-        timer = 0;
+    
         isFaceUp = !isFaceUp;
+        isFinishFlip = true;
         //if (back)
         //{
 
