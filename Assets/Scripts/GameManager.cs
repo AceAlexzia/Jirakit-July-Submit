@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public bool isDevMode = false;
     [SerializeField]
     private List<GameObject> cardlist = new List<GameObject>();
     [SerializeField]
@@ -29,7 +28,8 @@ public class GameManager : MonoBehaviour
 
     public bool gameStart = false;
 
-
+    [SerializeField]
+    private SoundEffect soundEffect;
 
     // Shuffle for list
     void Shuffle<T>(List<T> inputList)
@@ -69,19 +69,14 @@ public class GameManager : MonoBehaviour
         CreateCard();
         RandomCardID();
 
-        if(isDevMode)
-        {
 
-        }
         StartCoroutine(GameStart());
 
     }
 
     void Update()
     {
-        if(gameStart)
-        {
-        }
+
     }
 
     private void CreateCard()
@@ -130,6 +125,7 @@ public class GameManager : MonoBehaviour
             if (!selectCard.Contains(gameObject))
             {
                 selectCard.Add(gameObject);
+                soundEffect.PlayFlipSound();
 
             }
             if (selectCard.Count % 2 == 0 && selectCard.Count > 1)
@@ -144,22 +140,12 @@ public class GameManager : MonoBehaviour
     private void CheckCorrection()
     {
 
-        Debug.Log("selectCard.Count = " + selectCard.Count);
-        //for (int i = 0; i < selectCard.Count - 1; i+=2)
-        //{
-
-        //}
 
         if (selectCard[0].GetComponent<Card>().ID == selectCard[1].GetComponent<Card>().ID)
         {
 
             Debug.Log("Matching");
             StartCoroutine(CardMatch());
-            
-
-
-            
-
         }
         else
         {
@@ -174,10 +160,7 @@ public class GameManager : MonoBehaviour
         }
 
 
-        if (cardlist.Count == 0)
-        {
-            Debug.Log("Game End");
-        }
+        
 
 
     }
@@ -202,15 +185,17 @@ public class GameManager : MonoBehaviour
         
         // wait for flip
         yield return new WaitForSeconds(0.4f);
-
+        soundEffect.PlayWrongSound();
         selectCard[i].GetComponent<Card>().StartFlip();
+        soundEffect.PlayFlipSound();
         selectCard[i+1].GetComponent<Card>().StartFlip();
-
+        soundEffect.PlayFlipSound();
         selectCard[i].GetComponent<Card>().button.enabled = true;
         selectCard[i + 1].GetComponent<Card>().button.enabled = true;
 
         yield return new WaitForSeconds(0.05f);
         selectCard.RemoveAt(i);
+
         selectCard.RemoveAt(i);
 
     }
@@ -219,6 +204,7 @@ public class GameManager : MonoBehaviour
     {
 
         yield return new WaitForSeconds(0.4f);
+        soundEffect.PlayCorrectSound();
         foreach (GameObject obj in selectCard)
         {
             //obj.SetActive(false);
@@ -229,11 +215,19 @@ public class GameManager : MonoBehaviour
 
         }
         yield return new WaitForSeconds(0.05f);
-        selectCard.RemoveAt(0);
-        selectCard.RemoveAt(0);
         foreach (var card in selectCard)
         {
             cardlist.Remove(card);
+        }
+        selectCard.RemoveAt(0);
+        selectCard.RemoveAt(0);
+        if (cardlist.Count == 0)
+        {
+            Debug.Log("Game End");
+
+            soundEffect.PlayLevelCompleteSound();
+
+            // save data
         }
     }
 
