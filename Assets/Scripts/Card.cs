@@ -13,13 +13,13 @@ public class Card : MonoBehaviour
 
     private Image card_image;
 
-    private Animator animator;
-    
+
     private bool isFaceUp = false;
-    private bool canFlip = true;
     [SerializeField]
     private float x, y, z;
     float timer = 0.0f;
+    [HideInInspector]
+    public bool isFinishFlip = true;
 
 
     // Start is called before the first frame update
@@ -27,7 +27,6 @@ public class Card : MonoBehaviour
     {
         card_image = GetComponent<Image>();
         //card_image.sprite = backSprite;
-        animator = GetComponent<Animator>();
         isFaceUp = true;
 
     }
@@ -35,46 +34,13 @@ public class Card : MonoBehaviour
     {
         GameManager.instance.SelectCard(this.gameObject);
         // Flip
-        if(canFlip && GameManager.instance.gameStart)
+        if (GameManager.instance.gameStart)
         {
             StartFlip();
         }
 
     }
-    public void BeforeFlipCard()
-    {
-        canFlip = false;
-        if (isFaceUp)
-        {
-            //animator.SetBool("FlipCardBack", true);
-            animator.SetTrigger("FlipCardBack");
-        }
-        else
-        {
-            //animator.SetBool("FlipCardFront", true);
-            animator.SetTrigger("FlipCardFront");
-        }
-    }
 
-    public void AfterFlipCard()
-    {
-        if (isFaceUp)
-        {
-            //animator.SetBool("FlipCardBack", false);
-            animator.SetTrigger("FlipCardBack");
-            card_image.sprite = backSprite;
-        }
-        else
-        {
-            //animator.SetBool("FlipCardFront", false);
-            card_image.sprite = faceSprite;
-            animator.SetTrigger("FlipCardFront");
-        }
-        isFaceUp = !isFaceUp;
-        canFlip = true;
-
-        
-    }
 
     public void SetupCard()
     {
@@ -84,7 +50,7 @@ public class Card : MonoBehaviour
 
     }
 
-    private void StartFlip()
+    public void StartFlip()
     {
         StartCoroutine(CalculateFlip());
     }
@@ -105,20 +71,42 @@ public class Card : MonoBehaviour
 
     public IEnumerator CalculateFlip()
     {
-        for (int i = 0; i <= 180; i++)
+
+        if (isFaceUp)
         {
-            yield return new WaitForSeconds(0.0001f);
-            transform.Rotate(new Vector3(x, y, z));
-            timer++;
-            if (timer == 90 || timer == -90)
+            for (int i = 180; i >= 0; i--)
             {
-                Flip();
+                yield return new WaitForSeconds(0.0001f);
+                //transform.Rotate(new Vector3(x, y, z));
+
+                gameObject.GetComponent<RectTransform>().eulerAngles = new Vector3(x, i, z);
+                timer++;
+                if (timer == 90 || timer == -90)
+                {
+                    Flip();
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i <= 180; i++)
+            {
+                yield return new WaitForSeconds(0.0001f);
+                //transform.Rotate(new Vector3(x, y, z));
+
+                gameObject.GetComponent<RectTransform>().eulerAngles = new Vector3(x, i, z);
+                timer++;
+                if (timer == 90 || timer == -90)
+                {
+                    Flip();
+                }
             }
         }
         timer = 0;
+        isFaceUp = !isFaceUp;
         //if (back)
         //{
-            
+
         //}
         //else
         //{
@@ -133,13 +121,6 @@ public class Card : MonoBehaviour
         //        }
         //    }
         //}
-        
-    }
 
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

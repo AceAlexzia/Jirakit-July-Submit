@@ -122,14 +122,9 @@ public class GameManager : MonoBehaviour
     {
         if (gameStart)
         {
-            Debug.Log("InSelectCard");
             if (!selectCard.Contains(gameObject))
             {
                 selectCard.Add(gameObject);
-            }
-            else
-            {
-                selectCard.Remove(gameObject);
             }
             if (selectCard.Count == 2)
             {
@@ -141,6 +136,7 @@ public class GameManager : MonoBehaviour
 
     private void CheckCorrection()
     {
+        
         if (selectCard[0].GetComponent<Card>().ID == selectCard[1].GetComponent<Card>().ID)
         {
             Debug.Log("Matching");
@@ -160,10 +156,18 @@ public class GameManager : MonoBehaviour
                 obj.GetComponent<Card>().image.enabled = false;
             
             }
+            selectCard.Clear();
         }
         else
         {
             Debug.Log("Not Matching");
+
+
+            //Flip 2 cards
+
+            //UnAssigned SelectCard
+            StartCoroutine(CardUnMatch());
+
         }
 
         if (cardlist.Count == 0)
@@ -171,15 +175,13 @@ public class GameManager : MonoBehaviour
             Debug.Log("Game End");
         }
 
-
-        selectCard.Clear();
     }
 
     IEnumerator GameStart()
     {
 
 
-        yield return new WaitForSeconds(6.5f);
+        yield return new WaitForSeconds(2.0f);
 
         foreach (var card in cardlist)
         {
@@ -190,5 +192,20 @@ public class GameManager : MonoBehaviour
 
 
     }
+    IEnumerator CardUnMatch()
+    {
+        
+        
+        yield return new WaitForSeconds(0.4f);
+        foreach (GameObject obj in selectCard)
+        {
+
+            obj.GetComponent<Card>().StartFlip();
+        }
+        yield return new WaitForSeconds(0.05f);
+        selectCard.Clear();
+
+    }
+
 
 }
