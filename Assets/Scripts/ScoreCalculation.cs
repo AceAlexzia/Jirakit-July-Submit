@@ -7,7 +7,7 @@ public class ScoreCalculation : MonoBehaviour
     public float totalScore = 0;
     public int multipier = 1;
     public float baseScore;
-    private float maxDecay = 4.0f;
+    private float maxDecay = 9.0f;
     public float decay;
     private bool combo = false;
     public void MatchCalculation()
@@ -17,7 +17,7 @@ public class ScoreCalculation : MonoBehaviour
         {
             multipier += 1;
         }
-        baseScore = 5.0f * (5.0f - decay);
+        baseScore = 5.0f * (10.0f - decay);
 
         totalScore += multipier * baseScore;
         decay = 0.0f;
