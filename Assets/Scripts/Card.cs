@@ -79,31 +79,39 @@ public class Card : MonoBehaviour
 
     public IEnumerator CalculateFlip()
     {
+        float duration = 0.1f; // Total duration of the flip animation (in seconds)
+        float elapsedTime = 0f;
+        Quaternion startRotation = gameObject.GetComponent<RectTransform>().rotation;
+        Quaternion endRotation = Quaternion.Euler(new Vector3(x, 90, z)); // Rotate to 90 degrees on the y-axis
 
-        for (int i = 0; i <= 90; i++)
+        while (elapsedTime < duration)
         {
-            yield return new WaitForSeconds(0.0001f);
-            //transform.Rotate(new Vector3(x, i, z));
-
-            gameObject.GetComponent<RectTransform>().eulerAngles = new Vector3(x, i, z);
-            if (i == 90)
-            {
-                Flip();
-            }
+            elapsedTime += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsedTime / duration); // Calculate interpolation factor
+            gameObject.GetComponent<RectTransform>().rotation = Quaternion.Slerp(startRotation, endRotation, t);
+            yield return null; // Wait for the end of the frame
         }
-        for (int i = 90; i >= 0; i--)
+
+        // Ensure we end exactly at 90 degrees
+        gameObject.GetComponent<RectTransform>().rotation = endRotation;
+
+        Flip(); // Perform any action needed at the halfway point (if required)
+
+        // Reverse the flip
+        elapsedTime = 0f;
+        while (elapsedTime < duration)
         {
-            yield return new WaitForSeconds(0.0001f);
-            gameObject.GetComponent<RectTransform>().eulerAngles = new Vector3(x, i, z);
-            if (i == 90)
-            {
-                Flip();
-            }
-
+            elapsedTime += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsedTime / duration); // Calculate interpolation factor
+            gameObject.GetComponent<RectTransform>().rotation = Quaternion.Slerp(endRotation, startRotation, t);
+            yield return null; // Wait for the end of the frame
         }
-    
+
+        // Ensure we end exactly at the start rotation
+        gameObject.GetComponent<RectTransform>().rotation = startRotation;
+
         isFaceUp = !isFaceUp;
         isFinishFlip = true;
-
     }
+
 }

@@ -147,7 +147,7 @@ public class GameManager : MonoBehaviour
         {
 
             Debug.Log("Matching");
-            StartCoroutine(CardMatch());
+            StartCoroutine(CardMatch(0));
         }
         else
         {
@@ -203,28 +203,27 @@ public class GameManager : MonoBehaviour
 
     }
 
-    IEnumerator CardMatch()
+    IEnumerator CardMatch(int i)
     {
 
         yield return new WaitForSeconds(0.4f);
         soundEffect.PlayCorrectSound();
         scoreCalculation.MatchCalculation();
-        foreach (GameObject obj in selectCard)
-        {
-            //obj.SetActive(false);
 
-            //Destroy(obj);
-            obj.GetComponent<Image>().enabled = false;
-            obj.GetComponent<Card>().image.enabled = false;
+        selectCard[i].GetComponent<Image>().enabled = false;
+        selectCard[i].GetComponent<Card>().image.enabled = false;
+        selectCard[i+1].GetComponent<Image>().enabled = false;
+        selectCard[i+1].GetComponent<Card>().image.enabled = false;
 
-        }
+
         yield return new WaitForSeconds(0.05f);
         foreach (var card in selectCard)
         {
             cardlist.Remove(card);
         }
-        selectCard.RemoveAt(0);
-        selectCard.RemoveAt(0);
+        selectCard.RemoveAt(i);
+        selectCard.RemoveAt(i);
+
         if (cardlist.Count == 0)
         {
             Debug.Log("Game End");
