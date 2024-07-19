@@ -84,7 +84,5 @@ public class ScoreCalculation : MonoBehaviour
             }
         }
 
-        //Debug.Log("totalScore = " +  totalScore);
-
     }
 }
