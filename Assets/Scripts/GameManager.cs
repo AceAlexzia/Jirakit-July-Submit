@@ -237,7 +237,7 @@ public class GameManager : MonoBehaviour
                 if (scoreCalculation.totalScore > PlayerPrefs.GetFloat("HighScore1"))
                 {
                     PlayerPrefs.SetFloat("HighScore1", scoreCalculation.totalScore);
-                    scoreCalculation.highscoreText.text = scoreCalculation.totalScore.ToString("F0");
+                    scoreCalculation.highscoreText.text = "HighScore: " + scoreCalculation.totalScore.ToString("F0");
                 }
             }
             else if (LevelSelector_Singleton.instance.level == 2)
@@ -246,7 +246,7 @@ public class GameManager : MonoBehaviour
                 if (scoreCalculation.totalScore > PlayerPrefs.GetFloat("HighScore2"))
                 {
                     PlayerPrefs.SetFloat("HighScore2", scoreCalculation.totalScore);
-                    scoreCalculation.highscoreText.text = scoreCalculation.totalScore.ToString("F0");
+                    scoreCalculation.highscoreText.text = "HighScore: " + scoreCalculation.totalScore.ToString("F0");
                 }
             }
             else if (LevelSelector_Singleton.instance.level == 3)
@@ -255,7 +255,7 @@ public class GameManager : MonoBehaviour
                 if (scoreCalculation.totalScore > PlayerPrefs.GetFloat("HighScore3"))
                 {
                     PlayerPrefs.SetFloat("HighScore3", scoreCalculation.totalScore);
-                    scoreCalculation.highscoreText.text = scoreCalculation.totalScore.ToString("F0");
+                    scoreCalculation.highscoreText.text = "HighScore: " + scoreCalculation.totalScore.ToString("F0");
                 }
             }
             else if (LevelSelector_Singleton.instance.level == 4)
@@ -264,7 +264,7 @@ public class GameManager : MonoBehaviour
                 if (scoreCalculation.totalScore > PlayerPrefs.GetFloat("HighScore4"))
                 {
                     PlayerPrefs.SetFloat("HighScore4", scoreCalculation.totalScore);
-                    scoreCalculation.highscoreText.text = scoreCalculation.totalScore.ToString("F0");
+                    scoreCalculation.highscoreText.text = "HighScore: " + scoreCalculation.totalScore.ToString("F0");
                 }
             }
             else if (LevelSelector_Singleton.instance.level == 5)
@@ -273,7 +273,7 @@ public class GameManager : MonoBehaviour
                 if (scoreCalculation.totalScore > PlayerPrefs.GetFloat("HighScore5"))
                 {
                     PlayerPrefs.SetFloat("HighScore5", scoreCalculation.totalScore);
-                    scoreCalculation.highscoreText.text = scoreCalculation.totalScore.ToString("F0");
+                    scoreCalculation.highscoreText.text = "HighScore: " + scoreCalculation.totalScore.ToString("F0");
                 }
             }
 
