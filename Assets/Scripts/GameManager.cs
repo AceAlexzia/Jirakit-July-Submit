@@ -232,8 +232,48 @@ public class GameManager : MonoBehaviour
             soundEffect.PlayLevelCompleteSound();
 
             // save data
+            if (LevelSelector_Singleton.instance.level == 1)
+            {
+                PlayerPrefs.SetInt("Passlv1", 1);
+                if (scoreCalculation.totalScore > PlayerPrefs.GetFloat("HighScore1"))
+                {
+                    PlayerPrefs.SetFloat("HighScore1", scoreCalculation.totalScore);
+                }
+            }
+            else if (LevelSelector_Singleton.instance.level == 2)
+            {
+                PlayerPrefs.SetInt("Passlv2", 1);
+                if (scoreCalculation.totalScore > PlayerPrefs.GetFloat("HighScore2"))
+                {
+                    PlayerPrefs.SetFloat("HighScore2", scoreCalculation.totalScore);
+                }
+            }
+            else if (LevelSelector_Singleton.instance.level == 3)
+            {
+                PlayerPrefs.SetInt("Passlv3", 1);
+                if (scoreCalculation.totalScore > PlayerPrefs.GetFloat("HighScore3"))
+                {
+                    PlayerPrefs.SetFloat("HighScore3", scoreCalculation.totalScore);
+                }
+            }
+            else if (LevelSelector_Singleton.instance.level == 4)
+            {
+                PlayerPrefs.SetInt("Passlv4", 1);
+                if (scoreCalculation.totalScore > PlayerPrefs.GetFloat("HighScore4"))
+                {
+                    PlayerPrefs.SetFloat("HighScore4", scoreCalculation.totalScore);
+                }
+            }
+            else if (LevelSelector_Singleton.instance.level == 5)
+            {
+                PlayerPrefs.SetInt("Passlv5", 1);
+                if (scoreCalculation.totalScore > PlayerPrefs.GetFloat("HighScore5"))
+                {
+                    PlayerPrefs.SetFloat("HighScore5", scoreCalculation.totalScore);
+                }
+            }
+
+            
         }
     }
-
-
 }

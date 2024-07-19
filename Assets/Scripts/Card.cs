@@ -104,23 +104,6 @@ public class Card : MonoBehaviour
     
         isFaceUp = !isFaceUp;
         isFinishFlip = true;
-        //if (back)
-        //{
-
-        //}
-        //else
-        //{
-        //    for (int i = ; i <= 180; i++)
-        //    {
-        //        yield return new WaitForSeconds(0.001f);
-        //        transform.Rotate(new Vector3(x, y, z));
-
-        //        if (i == 90)
-        //        {
-        //            Flip();
-        //        }
-        //    }
-        //}
 
     }
 }
