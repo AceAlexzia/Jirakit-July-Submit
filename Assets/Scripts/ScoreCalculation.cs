@@ -11,8 +11,7 @@ public class ScoreCalculation : MonoBehaviour
     private float maxDecay = 9.0f;
     public float decay;
     private bool combo = false;
-    [SerializeField]
-    private TextMeshProUGUI highscoreText;
+    public TextMeshProUGUI highscoreText;
     [SerializeField]
     private TextMeshProUGUI scoreText;
 
